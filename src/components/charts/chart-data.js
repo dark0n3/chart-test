@@ -1,8 +1,9 @@
-import data from './data.json'
+import data from '../../api/data.json'
 
 function mFormatter(num) {
     return Math.abs(num) > 999999 ? Math.sign(num)*((Math.abs(num)/1000000).toFixed(1)) + 'm' : Math.sign(num)*Math.abs(num);
 }
+
 
 var barOptions_stacked = {
     responsive: true,
@@ -17,13 +18,13 @@ var barOptions_stacked = {
     scales: {
         xAxes: [{
             ticks: {
-                beginAtZero: false,
+                beginAtZero:false,
                 fontFamily: "'Open Sans Bold', sans-serif",
                 fontSize:11,
+                max: 3000000,
+                min: 500000,
+                stepSize: 50000,
                 maxTicksLimit: 6,
-                stepSize: 500000,
-                max: 9000000,
-                min: 6500000,
                 callback: function(value, index, values) {
                     return '$' + mFormatter(value);
                 }
@@ -35,17 +36,18 @@ var barOptions_stacked = {
                 drawBorder: false,
             }, 
             stacked: true,
-            position: 'bottom',
+            position: 'top',
             angleLines: {
                 display: false
               }
         },
     ],
         yAxes: [{
-            barPercentage: 0.4,
+            barPercentage: 0.5,
             gridLines: {
                 color: "#fff",
                 zeroLineColor: "#fff",
+                zeroLineWidth: 0
             },
             ticks: {
                 fontFamily: "'Open Sans Bold', sans-serif",
@@ -56,19 +58,21 @@ var barOptions_stacked = {
     },
 };
 
-var current = {...data.q.current};
-var next = {...data.q.next};
-export const qChartData = {
+var current = {...data.mo.current};
+var next = {...data.mo.next};
+var following = {...data.mo.following};
+export const moChartData = {
     type: 'horizontalBar',
     data: {
-        labels: ["current", "next"],
+        labels: ["current", "next", "after"],
         
         datasets: [
             {   z: 1,
                 type: 'line',
                 data: [
                     {x: current.now, y:'current'},
-                    {x: next.now, y:'next'}
+                    {x: next.now, y:'next'},
+                    {x: following.now, y:'after'},
                 ],
                 showLine: false,
                 pointRadius: 10,
@@ -79,6 +83,7 @@ export const qChartData = {
             z: 2,
             data: [[current.certain.from, current.certain.to],
                     [next.certain.from, next.certain.to],
+                    [following.certain.from, following.certain.to],
                   ],
                     backgroundColor: "#7A95D2",
                     hoverBackgroundColor: "#7A95D2"
@@ -88,8 +93,8 @@ export const qChartData = {
             z: 2,
             data: [
                 current.expected.to-current.certain.to,
-                next.expected.to-next.certain.to
-            ],
+                next.expected.to-next.certain.to, 
+                following.expected.to-following.certain.to,],
             backgroundColor: "#FFFF33",
             hoverBackgroundColor: "#FFFF33"
         },
@@ -98,14 +103,14 @@ export const qChartData = {
             z: 2,
             data: [
                 current.unlikely.to-current.expected.to,
-                next.unlikely.to-next.expected.to
-            ],
+                next.unlikely.to-next.expected.to,
+                following.unlikely.to-following.expected.to],
             backgroundColor: "#DC143C",
             hoverBackgroundColor: "#DC143C"
         },
     ]
     },
     options: barOptions_stacked
-  }
+  };
   
-  export default qChartData;
+  export default moChartData;

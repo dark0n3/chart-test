@@ -27,8 +27,8 @@
 <script>
 import Chart from 'chart.js'
 
-import moChartData from '../api/chart-data.js';
-import qChartData from '../api/chart-data-two.js';
+import moChartData from './charts/chart-data.js';
+import qChartData from './charts/chart-data-two.js';
 
 export default {
   data() {
@@ -109,7 +109,7 @@ export default {
     margin-right: 0.7em;
   }
   .navButton {
-    background-color: white; /* Green */
+    background-color: white;
     border: none;
     color: black;
     padding: 10px 32px;
