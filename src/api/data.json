@@ -1,0 +1,41 @@
+{"mo": {
+  "current": {
+    "certain": {
+      "from": 20,
+      "to": 40
+    },
+    "expected": {
+      "to": 50
+    },
+    "unlikely": {
+      "to": 120
+    },
+    "now" : 30
+  },
+  "next": {
+    "certain": {
+      "from": 20,
+      "to": 40
+    },
+    "expected": {
+      "to": 50
+    },
+    "unlikely": {
+      "to": 100
+    },
+    "now" : 30
+  },
+  "following": {
+    "certain": {
+      "from": 20,
+      "to": 40
+    },
+    "expected": {
+      "to": 50
+    },
+    "unlikely": {
+      "to": 120
+    },
+    "now" : 30
+  }
+}}
