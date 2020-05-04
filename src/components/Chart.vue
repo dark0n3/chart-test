@@ -4,18 +4,21 @@
       <h2> Where Are We Going to Land </h2>
       <span class="dots">
         <span class="certain"> certain </span>
-        <span class="expected"> exoected </span>
+        <span class="expected"> expected </span>
         <span class="unlikely"> unlikely </span>
       </span>
-      <router-link :to="'/'">
-        <button class="navButton" :class="{active: active === 'Sales'}">Sales</button>
-      </router-link>
-      <router-link :to="'/'">
-        <button class="navButton">Prospecting</button>
-      </router-link>
+      <div class="buttons">
+        <router-link :to="'/'">
+          <button class="navButton" :class="{active: active === 'Sales'}">Sales</button>
+        </router-link>
+        <router-link :to="'/'">
+          <button class="navButton">Prospecting</button>
+        </router-link>
+      </div>
     </div>
-    <div style="width: 400px">
-      <canvas id="planet-chart"></canvas>
+    <div style="width: 1200px">
+      <canvas id="planet-chart" class="first-part"></canvas>
+      <div id="smaller-border"></div>
       <canvas id="planet-chart-two" class="second-part"></canvas>
     </div>
   </div>
@@ -24,15 +27,15 @@
 <script>
 import Chart from 'chart.js'
 
-import planetChartData from '../api/chart-data.js';
-import planetChartDataTwo from '../api/chart-data-two.js';
+import moChartData from '../api/chart-data.js';
+import qChartData from '../api/chart-data-two.js';
 
 export default {
   data() {
     return {
       active: 'Sales',
-      planetChartData: planetChartData,
-      planetChartDataTwo: planetChartDataTwo,
+      moChartData: moChartData,
+      qChartData: qChartData,
     }
   },
 
@@ -48,21 +51,31 @@ export default {
     }
   },
   mounted() {
-    this.createChart('planet-chart', this.planetChartData);
-    this.createChart('planet-chart-two', this.planetChartDataTwo);
+    this.createChart('planet-chart', this.moChartData);
+    this.createChart('planet-chart-two', this.qChartData);
     console.log(this.active)
   }
 }
 </script>
 
 <style>
-  .second-part {
-    margin-top: -13px;
+  .first-part {
+    width: 600px;
+    max-height: 200px;
+    margin-bottom: -6px;
+  }
+  #smaller-border{
     border-top: 2px dashed grey;
+  }
+  .second-part {
+    width: 600px;
+    max-height: 200px;
+    margin-top: -6px;
   }
 
   .header {
     display: flex;
+    width: 1200px;
   }
 
   .header > .dots {
@@ -78,17 +91,23 @@ export default {
   }
 
   .header > .dots > .certain {
-    background-color: rgba(63,103,126,1);
+    background-color: #7A95D2
   }
 
   .header > .dots > .expected {
-    background-color: rgba(163,103,126,1);
+    background-color: #FFFF33;
   }
 
   .header > .dots > .unlikely {
-    background-color: rgba(63,203,226,1);
+    background-color: #DC143C;
+    color: white
   }
-
+  .buttons {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 0.7em;
+  }
   .navButton {
     background-color: white; /* Green */
     border: none;
@@ -98,11 +117,11 @@ export default {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border: 2px solid rgb(168, 112, 112);
+    border: 2px solid black;
     width: 200px
   }
   .active {
-    background-color: aquamarine;
+    background-color: #7A95D2;
   }
 
 
