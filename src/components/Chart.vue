@@ -1,7 +1,7 @@
 <template>
   <div> 
     <div class="header">
-      <h2> Where Are We Going to Land </h2>
+      <h2> Where Are We Going to Land? </h2>
       <span class="dots">
         <span class="certain"> certain </span>
         <span class="expected"> expected </span>
@@ -9,10 +9,10 @@
       </span>
       <div class="buttons">
         <router-link :to="'/'">
-          <button class="navButton" :class="{active: active === 'Sales'}">Sales</button>
+          <button class="navButton" :class="{active: active === 'Sales'}">SALES</button>
         </router-link>
         <router-link :to="'/'">
-          <button class="navButton">Prospecting</button>
+          <button class="navButton">PROSPECTING</button>
         </router-link>
       </div>
     </div>
@@ -62,15 +62,15 @@ export default {
   .first-part {
     width: 600px;
     max-height: 200px;
-    margin-bottom: -6px;
+    margin-bottom: -7px;
   }
   #smaller-border{
     border-top: 2px dashed grey;
   }
   .second-part {
     width: 600px;
-    max-height: 200px;
-    margin-top: -6px;
+    max-height: 160px;
+    margin-top: -8px;
   }
 
   .header {
@@ -84,22 +84,22 @@ export default {
   }
 
   .header > .dots > span{
-    width: 70px;
+    width: 80px;
     max-height: 20px;
     border-radius: 10px;
     margin: 0 5px;
   }
 
   .header > .dots > .certain {
-    background-color: #7A95D2
+    background-color: #77b9e5;
   }
 
   .header > .dots > .expected {
-    background-color: #FFFF33;
+    background-color: #e7c81c;
   }
 
   .header > .dots > .unlikely {
-    background-color: #DC143C;
+    background-color: #ee3f37;
     color: white
   }
   .buttons {
@@ -116,12 +116,12 @@ export default {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    border: 2px solid black;
+    font-size: 14px;
+    border: 2px solid #39527c;
     width: 200px
   }
   .active {
-    background-color: #7A95D2;
+    background-color: #77b9e5;
   }
 
 

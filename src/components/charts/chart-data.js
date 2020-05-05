@@ -20,7 +20,7 @@ var barOptions_stacked = {
             ticks: {
                 beginAtZero:false,
                 fontFamily: "'Open Sans Bold', sans-serif",
-                fontSize:11,
+                fontSize:13,
                 max: 3000000,
                 min: 500000,
                 stepSize: 50000,
@@ -34,6 +34,7 @@ var barOptions_stacked = {
             },
             gridLines: {
                 drawBorder: false,
+                color: "#000",
             }, 
             stacked: true,
             position: 'top',
@@ -43,15 +44,17 @@ var barOptions_stacked = {
         },
     ],
         yAxes: [{
-            barPercentage: 0.5,
+            barPercentage: 0.8,
             gridLines: {
                 color: "#fff",
                 zeroLineColor: "#fff",
-                zeroLineWidth: 0
+                zeroLineWidth: 0,
+                drawBorder: false,
             },
             ticks: {
                 fontFamily: "'Open Sans Bold', sans-serif",
-                fontSize:11
+                fontSize:13,
+                drawBorder: false,
             },
         }  
     ]
@@ -61,22 +64,27 @@ var barOptions_stacked = {
 var current = {...data.mo.current};
 var next = {...data.mo.next};
 var following = {...data.mo.following};
+
+var dotIcon = new Image();
+dotIcon.src = 'https://i.ibb.co/cTcTp0T/dot-circle-regular-4.png'
+
 export const moChartData = {
     type: 'horizontalBar',
     data: {
-        labels: ["current", "next", "after"],
+        labels: ["CURRENT MO.", "NEXT MO.", "FOLLOWING MO."],
         
         datasets: [
             {   z: 1,
                 type: 'line',
                 data: [
-                    {x: current.now, y:'current'},
-                    {x: next.now, y:'next'},
-                    {x: following.now, y:'after'},
+                    {x: current.now, y:'CURRENT MO.'},
+                    {x: next.now, y:'NEXT MO.'},
+                    {x: following.now, y:'FOLLOWING MO.'},
                 ],
                 showLine: false,
                 pointRadius: 10,
-                pointHitRadius: 3
+                pointHitRadius: 3,
+                pointStyle: dotIcon,
             },
             {
             stack: 1,
@@ -85,8 +93,8 @@ export const moChartData = {
                     [next.certain.from, next.certain.to],
                     [following.certain.from, following.certain.to],
                   ],
-                    backgroundColor: "#7A95D2",
-                    hoverBackgroundColor: "#7A95D2"
+                    backgroundColor: "#77b9e5",
+                    hoverBackgroundColor: "#77b9e5"
         },
         {
             stack: 1,
@@ -95,8 +103,8 @@ export const moChartData = {
                 current.expected.to-current.certain.to,
                 next.expected.to-next.certain.to, 
                 following.expected.to-following.certain.to,],
-            backgroundColor: "#FFFF33",
-            hoverBackgroundColor: "#FFFF33"
+            backgroundColor: "#e7c81c",
+            hoverBackgroundColor: "#e7c81c"
         },
         {
             stack: 1,
@@ -105,8 +113,8 @@ export const moChartData = {
                 current.unlikely.to-current.expected.to,
                 next.unlikely.to-next.expected.to,
                 following.unlikely.to-following.expected.to],
-            backgroundColor: "#DC143C",
-            hoverBackgroundColor: "#DC143C"
+            backgroundColor: "#ee3f37",
+            hoverBackgroundColor: "#ee3f37"
         },
     ]
     },

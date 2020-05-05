@@ -1,7 +1,7 @@
 import data from '../../api/data.json'
 
 function mFormatter(num) {
-    return Math.abs(num) > 999999 ? Math.sign(num)*((Math.abs(num)/1000000).toFixed(1)) + 'm' : Math.sign(num)*Math.abs(num);
+    return Math.abs(num) > 999999 ? Math.sign(num)*((Math.abs(num)/1000000).toFixed(1)) + 'M' : Math.sign(num)*Math.abs(num);
 }
 
 var barOptions_stacked = {
@@ -19,7 +19,7 @@ var barOptions_stacked = {
             ticks: {
                 beginAtZero: false,
                 fontFamily: "'Open Sans Bold', sans-serif",
-                fontSize:11,
+                fontSize:13,
                 maxTicksLimit: 6,
                 stepSize: 500000,
                 max: 9000000,
@@ -29,11 +29,12 @@ var barOptions_stacked = {
                 }
             },
             scaleLabel:{
-                display:false
+                display:true
             },
             gridLines: {
                 drawBorder: false,
-            }, 
+                color: "#000",
+            },      
             stacked: true,
             position: 'bottom',
             angleLines: {
@@ -42,14 +43,15 @@ var barOptions_stacked = {
         },
     ],
         yAxes: [{
-            barPercentage: 0.4,
+            barPercentage: 0.8,
             gridLines: {
                 color: "#fff",
+                drawBorder: false,
                 zeroLineColor: "#fff",
             },
             ticks: {
                 fontFamily: "'Open Sans Bold', sans-serif",
-                fontSize:11
+                fontSize:13
             },
         }  
     ]
@@ -58,21 +60,26 @@ var barOptions_stacked = {
 
 var current = {...data.q.current};
 var next = {...data.q.next};
+
+var dotIcon = new Image();
+dotIcon.src = 'https://i.ibb.co/cTcTp0T/dot-circle-regular-4.png'
+
 export const qChartData = {
     type: 'horizontalBar',
     data: {
-        labels: ["current", "next"],
+        labels: ["       CURRENT Q.", "NEXT Q."],
         
         datasets: [
             {   z: 1,
                 type: 'line',
                 data: [
-                    {x: current.now, y:'current'},
-                    {x: next.now, y:'next'}
+                    {x: current.now, y:'       CURRENT Q.'},
+                    {x: next.now, y:'NEXT Q.'}
                 ],
                 showLine: false,
                 pointRadius: 10,
-                pointHitRadius: 3
+                pointHitRadius: 3,
+                pointStyle: dotIcon
             },
             {
             stack: 1,
@@ -80,8 +87,8 @@ export const qChartData = {
             data: [[current.certain.from, current.certain.to],
                     [next.certain.from, next.certain.to],
                   ],
-                    backgroundColor: "#7A95D2",
-                    hoverBackgroundColor: "#7A95D2"
+                    backgroundColor: "#77b9e5",
+                    hoverBackgroundColor: "#77b9e5"
         },
         {
             stack: 1,
@@ -90,8 +97,8 @@ export const qChartData = {
                 current.expected.to-current.certain.to,
                 next.expected.to-next.certain.to
             ],
-            backgroundColor: "#FFFF33",
-            hoverBackgroundColor: "#FFFF33"
+            backgroundColor: "#e7c81c",
+            hoverBackgroundColor: "#e7c81c"
         },
         {
             stack: 1,
@@ -100,8 +107,8 @@ export const qChartData = {
                 current.unlikely.to-current.expected.to,
                 next.unlikely.to-next.expected.to
             ],
-            backgroundColor: "#DC143C",
-            hoverBackgroundColor: "#DC143C"
+            backgroundColor: "#ee3f37",
+            hoverBackgroundColor: "#ee3f37"
         },
     ]
     },
