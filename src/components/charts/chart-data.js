@@ -66,7 +66,7 @@ var next = {...data.mo.next};
 var following = {...data.mo.following};
 
 var dotIcon = new Image();
-dotIcon.src = 'https://i.ibb.co/cTcTp0T/dot-circle-regular-4.png'
+dotIcon.src = 'https://svgshare.com/i/Koh.svg'
 
 export const moChartData = {
     type: 'horizontalBar',

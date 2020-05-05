@@ -62,7 +62,7 @@ var current = {...data.q.current};
 var next = {...data.q.next};
 
 var dotIcon = new Image();
-dotIcon.src = 'https://i.ibb.co/cTcTp0T/dot-circle-regular-4.png'
+dotIcon.src = 'https://svgshare.com/i/Koh.svg'
 
 export const qChartData = {
     type: 'horizontalBar',
