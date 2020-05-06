@@ -16,7 +16,7 @@
         </router-link>
       </div>
     </div>
-    <div style="width: 1200px">
+    <div class="graphics">
       <canvas id="planet-chart" class="first-part"></canvas>
       <div id="smaller-border"></div>
       <canvas id="planet-chart-two" class="second-part"></canvas>
@@ -60,34 +60,42 @@ export default {
 
 <style>
   .first-part {
-    width: 600px;
+    width: 100% !important;
     max-height: 200px;
-    margin-bottom: -7px;
+    height: 15vw !important;
+    margin-bottom: -.6vw;
   }
   #smaller-border{
-    border-top: 2px dashed grey;
+    border-top: .1vw dashed grey;
   }
   .second-part {
-    width: 600px;
+    width: 100% !important;
+    height: 15vw !important;
     max-height: 160px;
-    margin-top: -8px;
+    margin-top: -.55vw;
   }
 
   .header {
     display: flex;
-    width: 1200px;
+  }
+
+  .header > h2{
+    font-size: 2vw;
+    align-self: center;
   }
 
   .header > .dots {
     display: flex;
     align-items: center;
+    width: 20%;
   }
 
   .header > .dots > span{
-    width: 80px;
+    width: 33%;
     max-height: 20px;
     border-radius: 10px;
-    margin: 0 5px;
+    margin: 0 .3125rem;;
+    font-size: 1vw;
   }
 
   .header > .dots > .certain {
@@ -106,19 +114,22 @@ export default {
     display: flex;
     align-items: center;
     margin-left: auto;
-    margin-right: 0.7em;
+    width: 35%;
+  }
+  .buttons > a {
+    width: 50%  
   }
   .navButton {
     background-color: white;
     border: none;
     color: black;
-    padding: 10px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 1vw;
     border: 2px solid #39527c;
-    width: 200px
+    padding: 3% 1rem;
+    width: 100%;
   }
   .active {
     background-color: #77b9e5;
