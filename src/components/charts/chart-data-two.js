@@ -19,7 +19,7 @@ var barOptions_stacked = {
             ticks: {
                 beginAtZero: false,
                 fontFamily: "'Open Sans Bold', sans-serif",
-                fontSize:13,
+                fontSize:10,
                 maxTicksLimit: 6,
                 stepSize: 500000,
                 max: 9000000,
@@ -51,7 +51,7 @@ var barOptions_stacked = {
             },
             ticks: {
                 fontFamily: "'Open Sans Bold', sans-serif",
-                fontSize:13
+                fontSize:12
             },
         }  
     ]
