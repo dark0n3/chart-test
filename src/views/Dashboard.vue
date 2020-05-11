@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="add"> Add new </button>
+    <button @click="add" v-if="!isClicked"> Add new </button>
     <grid-layout
       :layout.sync="layout"
       :col-num="12"
@@ -10,8 +10,9 @@
       :is-mirrored="false"
       :preventCollision="false"
       :vertical-compact="true"
-      :margin="[10, 10]"
+      :margin="[20, 20]"
       :use-css-transforms="true"
+      class="layout"
     >
       <grid-item v-for="item in layout"
         :x="item.x"
@@ -19,7 +20,9 @@
         :w="item.w"
         :h="item.h"
         :i="item.i"
-        :key="item.i">
+        :key="item.i"
+        :is-resizable="item.resizable"
+        class="item">
         <component v-if="item.isComponent" :is="item.c"></component>
         <div v-else v-html="item.c"></div>
       </grid-item>
@@ -62,6 +65,16 @@ export default {
     Chart,
     PieChart
   },
+
+  data() {
+    return {
+      layout: [
+        {"x":0,"y":0,"w":9,"h":11,"i":"1", c: Chart, isComponent: true, resizable: false},
+      ],
+      type: '',
+      isClicked: false
+    }
+  },
   methods: {
     remove(ind) {
       let index = Number(ind) + 1;
@@ -70,15 +83,9 @@ export default {
       }
     },
     add() {
-      this.layout.push({"x":0,"y":10,"w":2,"h":5,"i":this.layout.length, c: PieChart, isComponent: true})
-    }
-  },
-  data() {
-    return {
-      layout: [
-        {"x":0,"y":0,"w":10,"h":10,"i":"2", c: Chart, isComponent: true},
-      ],
-      type: ''
+      this.isClicked = false
+      this.layout.push({"x":0,"y":10,"w":2,"h":5,"i":this.layout.length+1, c: PieChart, isComponent: true})
+      this.layout.push({"x":0,"y":10,"w":2,"h":5,"i":this.layout.length+1, c: "<h1> Template </h1>", isComponent: false})
     }
   }
 }
@@ -86,7 +93,14 @@ export default {
 
 <style>
  .item {
-   background-color: red;
+   background-color: #fff	;
+   border-radius: 5px;
+   box-shadow: 0 0 10px rgba(0,0,0,0.5);
+   padding: 5px;
+   margin: 10px;
+ }
+ .layout {
+   background-color: #F8F8F8;
  }
  .delete {
    background-color: aqua;

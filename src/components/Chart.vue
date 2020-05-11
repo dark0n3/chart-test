@@ -17,9 +17,9 @@
       </div>
     </div>
     <div class="graphics">
-      <canvas id="planet-chart" class="first-part"></canvas>
+      <canvas id="mo-chart" class="first-part"></canvas>
       <div id="smaller-border"></div>
-      <canvas id="planet-chart-two" class="second-part"></canvas>
+      <canvas id="q-chart" class="second-part"></canvas>
     </div>
   </div>
 </template>
@@ -51,8 +51,8 @@ export default {
     }
   },
   mounted() {
-    this.createChart('planet-chart', this.moChartData);
-    this.createChart('planet-chart-two', this.qChartData);
+    this.createChart('mo-chart', this.moChartData);
+    this.createChart('q-chart', this.qChartData);
     console.log(this.active)
   }
 }

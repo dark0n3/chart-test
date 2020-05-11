@@ -10,7 +10,7 @@ var barOptions_stacked = {
     maintainAspectRatio: false,
     legend: false,
     tooltips: {
-        enabled: false
+        enabled: true
     },
     hover :{
         animationDuration:0
