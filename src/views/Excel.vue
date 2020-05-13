@@ -12,8 +12,12 @@
             </span>
           </label>
         </div>
-        <transition name="fade">
-          <div v-show="fileChosen">
+        <transition-group name="fade">
+          <div v-show="fileChosen" :key="'path'">
+            <input type="text" v-model="path" placeholder="choose the path"/>
+            <button @click="confirmPath"> Confirm </button>  
+          </div>
+          <div v-show="pathChosen" :key="'sheet'">
             <h3> STEP 2: </h3>
             <p> Choose sheet </p>
             <xlsx-read :file="file">
@@ -36,7 +40,7 @@
               </xlsx-json>
             </xlsx-read>
           </div>
-        </transition>
+        </transition-group>
     </section>
   </div>
 </template>
@@ -62,7 +66,9 @@ export default {
       sheetName: null,
       collection: [],
       sheets: [],
-      fileChosen: false
+      fileChosen: false,
+      pathChosen: false,
+      path: ''
     };
   },
   methods: {
@@ -77,7 +83,7 @@ export default {
     },
     save(collection) {
       collection.forEach((element, id) => {
-        firebase.database().ref('data/Wayne/leads').push(element)
+        firebase.database().ref(`data/Wayne/${this.path}`).push(element)
       });
     },
     combine(array) {
@@ -92,6 +98,9 @@ export default {
         return res;
       }, {});
       return res
+    },
+    confirmPath() {
+      this.pathChosen = true;
     }
   }
 };
