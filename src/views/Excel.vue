@@ -14,11 +14,12 @@
         </div>
         <transition-group name="fade">
           <div v-show="fileChosen" :key="'path'">
-            <input type="text" v-model="path" placeholder="choose the path"/>
-            <button @click="confirmPath"> Confirm </button>  
+            <h3> STEP 2: </h3>
+              <input type="text" v-model="path" placeholder="choose the path" class="path"/>
+              <button @click="confirmPath" class="path-btn"> Confirm </button>  
           </div>
           <div v-show="pathChosen" :key="'sheet'">
-            <h3> STEP 2: </h3>
+            <h3> STEP 3: </h3>
             <p> Choose sheet </p>
             <xlsx-read :file="file">
               <xlsx-sheets>
@@ -32,7 +33,7 @@
               </xlsx-sheets>
               <xlsx-json :sheet="selectedSheet">
                 <template #default="{collection}">
-                  <h3> STEP 3: </h3>
+                  <h3> STEP 4: </h3>
                   <div>
                     <button @click="save(collection)" class="save-btn"> Save </button>
                   </div>
@@ -167,5 +168,33 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
   opacity: 0;
+}
+
+.path {
+  padding: 5px 0px 5px 5px;
+  box-sizing: border-box;
+  height: calc(2rem + 1px);
+  border: 2px solid #39527c;
+  width: 16%;
+    font-size: 1rem;
+  color: #2c3e50;
+}
+
+.path-btn {
+  height: calc(2rem + 1px);
+  background: white;
+  padding: 5px;
+  border: 2px solid #39527c;
+  top: 0px;
+}
+.path-btn:hover {
+  background: #77b9e5;
+}
+
+button {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+  text-align-last: center;
+  font-size: 1rem;
+  color: #2c3e50;
 }
 </style>
